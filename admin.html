@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090a0d" />
+  <title>Product Manager — Aabha</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css?v=4" />
+  <link rel="stylesheet" href="admin-theme.css?v=4" />
+  <script>if(sessionStorage.getItem('aabhaAdminSession')!=='authenticated')location.replace('admin-login.html');</script>
+</head>
+<body>
+  <header class="admin-header">
+    <a class="brand" href="index.html">✳ aabha<span>.</span></a>
+    <div class="header-right"><span class="manager-tag">PRODUCT MANAGER</span><a class="store-link" href="index.html">View storefront ↗</a><button class="logout-button" id="admin-logout" type="button">Sign out</button></div>
+  </header>
+
+  <main class="admin-main">
+    <section class="intro"><div><p class="eyebrow">YOUR LOCAL CATALOG</p><h1>Manage your <em>collection.</em></h1><p class="intro-copy">Add sarees, update prices, and refresh product photos and descriptions.</p></div><div class="local-badge"><span></span>Saved in this browser</div></section>
+    <section class="collection-manager" aria-labelledby="collection-manager-title">
+      <div class="collection-manager-heading"><div><p class="eyebrow">SHOP BY WEAVE &amp; STYLE</p><h2 id="collection-manager-title">Manage collections</h2></div><p>Add a collection type here; it will appear in the saree editor and on the storefront.</p></div>
+      <form id="collection-form" class="collection-form"><label class="visually-hidden" for="new-collection-name">New collection name</label><input id="new-collection-name" type="text" maxlength="40" placeholder="New collection, e.g. Linen" required /><button type="submit">Add collection <span>↗</span></button></form>
+      <div class="collection-list" id="collection-list" aria-label="Available collections"></div>
+      <p class="collection-status" id="collection-status" role="status" aria-live="polite"></p>
+    </section>
+    <div class="manager-layout">
+      <section class="editor-panel" aria-labelledby="editor-title">
+        <div class="panel-heading"><div><p class="eyebrow" id="form-mode">NEW PRODUCT</p><h2 id="editor-title">Add a saree</h2></div><button class="text-button" id="reset-form" type="button">Clear form</button></div>
+        <form id="product-form">
+          <input id="product-id" type="hidden" />
+          <label class="field">Saree name<input id="product-name" name="name" type="text" maxlength="80" placeholder="e.g. Gulabi Kanchipuram Silk" required /></label>
+          <div class="field-row"><label class="field">Price (₹)<input id="product-price" name="price" type="number" min="1" step="1" placeholder="2999" required /></label><label class="field">Collection<select id="product-category" name="category"><option>Silk</option><option>Cotton</option><option>Festive</option><option>Everyday</option><option>Kanchivaram</option></select></label></div>
+          <label class="field">Short material / style line<input id="product-detail" name="detail" type="text" maxlength="80" placeholder="Kanchipuram silk · Zari border" /></label>
+          <label class="field">Product description<textarea id="product-description" name="description" rows="4" maxlength="700" placeholder="Describe the weave, fabric, colours, and details…" required></textarea></label>
+          <label class="field">Saree photos <span class="field-hint" id="photo-hint">Choose up to 5 JPG, PNG, or WebP images.</span><input id="product-images" name="images" type="file" accept="image/png,image/jpeg,image/webp" multiple /><span class="upload-note">The first photo is the storefront cover. Photos are resized for local storage.</span></label>
+          <label class="append-images-row" id="append-images-row" hidden><input id="append-images" type="checkbox" checked /> Append selected photos to the current gallery (uncheck to replace it)</label>
+          <div class="image-preview" id="image-preview-wrap" hidden><div class="image-preview-grid" id="image-preview-grid"></div><span id="image-preview-label">Photo preview</span></div>
+          <label class="field">Color options <span class="field-hint">Enter comma-separated colors in the same order as their photos.</span><input id="product-color-labels" name="colorLabels" type="text" maxlength="120" placeholder="Green, Red, Gold" /><span class="upload-note">Customers can filter by these colors; selecting a swatch shows its matching photo.</span></label>
+          <label class="field">Badge <span class="field-hint">Optional small label on the product card</span><input id="product-badge" name="badge" type="text" maxlength="28" placeholder="HANDLOOM" /></label>
+          <button class="save-button" id="save-product" type="submit">Add saree to storefront <span>↗</span></button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="catalog-panel" aria-labelledby="catalog-title">
+        <div class="panel-heading catalog-heading"><div><p class="eyebrow">LIVE STOREFRONT PRODUCTS</p><h2 id="catalog-title">Your sarees <span id="product-count"></span></h2></div><label class="catalog-search"><span class="visually-hidden">Search sarees</span><input id="catalog-search" type="search" placeholder="Search collection" /></label></div>
+        <div class="product-list" id="product-list"></div>
+        <p class="no-products" id="no-products" hidden>No sarees match your search.</p>
+      </section>
+    </div>
+    <p class="storage-note">This manager and storefront share the catalog on this browser. Uploaded product photos are stored locally in the browser.</p>
+  </main>
+  <script src="catalog-data.js?v=7"></script>
+  <script src="admin.js?v=8"></script>
+  <script src="admin-collections.js?v=3"></script>
+</body>
+</html>

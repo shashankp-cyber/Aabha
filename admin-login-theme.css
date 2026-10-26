@@ -1,0 +1,39 @@
+:root {
+  color-scheme: dark;
+  --jet: #090a0d;
+  --panel: #12141a;
+  --panel-raised: #191c24;
+  --blue: #28a9e8;
+  --blue-hover: #1688c3;
+  --blue-soft: #102d3c;
+  --rose: #ff3d89;
+  --rose-soft: #381827;
+  --paper: var(--panel);
+  --ink: #f7f5f8;
+  --muted: #a8a7b2;
+  --line: #2a2d37;
+  --wine: var(--blue);
+}
+
+body { background: radial-gradient(ellipse at 25% 15%, #102d3c 0, transparent 40%), var(--jet); color: var(--ink); }
+.login-header { background: #0c0d11e8; border-color: var(--line); }
+.brand, .store-link { color: var(--blue); }
+.brand span { color: var(--rose); }
+.login-card { border-color: var(--line); background: var(--panel); box-shadow: 0 22px 75px #0008; }
+.eyebrow { color: var(--muted); }
+.login-card h1 em { color: var(--rose); }
+.login-intro, .local-note { color: var(--muted); }
+.login-field { color: #e2e0e7; }
+.login-field input {
+  border-color: #343844;
+  background: #0d0f14;
+  color: var(--ink);
+  outline-color: var(--blue);
+}
+.login-field input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px #28a9e826; }
+.login-submit { background: var(--blue); color: #071016; }
+.login-submit:hover { background: var(--blue-hover); }
+.login-status { color: var(--rose); }
+.demo-credentials { border: 1px solid #263d4b; background: #0e1c25; color: #d4e7ef; }
+.demo-credentials strong, .demo-credentials button { color: var(--rose); }
+.demo-credentials code { color: var(--blue); }
