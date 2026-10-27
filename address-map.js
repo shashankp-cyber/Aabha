@@ -62,7 +62,7 @@
     if (window.google?.maps?.Map) return Promise.resolve(window.google.maps);
     if (mapsPromise) return mapsPromise;
     const key = window.AABHA_GOOGLE_MAPS_KEY || '';
-    if (!key) return Promise.reject(new Error('Google Maps key is missing. Add it to config.local.js.'));
+    if (!key) return Promise.reject(new Error('Google Maps key is missing. Set AABHA_GOOGLE_MAPS_KEY in config.js for the hosted site or config.local.js for local development.'));
 
     mapsPromise = new Promise((resolve, reject) => {
       const script = document.createElement('script');
