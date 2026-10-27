@@ -91,3 +91,35 @@
 .profile-name-edit-controls button{padding:9px 12px;border:1px solid var(--line);background:var(--surface-raised);color:var(--ink);font:inherit;cursor:pointer}
 .profile-name-edit-controls .profile-name-save{border-color:var(--wine);background:var(--wine);color:#071016}
 #profile-name-feedback{min-height:1.4em;margin:6px 0 0;color:var(--saffron);font-size:14px}
+
+/* Clearer mobile storefront: let the announcement wrap and reserve space for card controls. */
+.product-card > .badge{z-index:2}
+.product-bag-action{position:relative;left:auto;right:auto;bottom:auto;z-index:auto;margin:7px 0 0}
+.product-bag-action .quick-add{opacity:1;transform:none;transition:none}
+.product-gallery-count{bottom:8px}
+@media(max-width:620px){
+  .announcement{height:auto;min-height:48px;padding:7px 12px;white-space:normal;flex-wrap:wrap;align-content:center;gap:2px 7px;text-align:center;font-size:16px;line-height:1.3;letter-spacing:.07em}
+  .site-header{height:66px;padding:0 4%;grid-template-columns:32px minmax(0,1fr) 174px;column-gap:4px}
+  .wordmark{font-size:25px;letter-spacing:-1.7px}
+  .header-actions{min-width:0;width:100%;gap:6px}
+  .login-trigger{display:block;max-width:70px;min-width:0;padding:0;overflow:hidden;text-overflow:ellipsis;text-align:right;font-size:13px;line-height:1.2}
+  .profile-trigger{width:32px;height:32px;flex-basis:32px}
+  .cart-trigger{font-size:14px;white-space:nowrap}
+  .cart-count{width:21px;height:21px;margin-left:3px;font-size:13px}
+  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:10px;row-gap:24px;padding-top:18px}
+  .product-card>.badge{position:static;display:block;width:fit-content;max-width:100%;margin:0 0 6px;padding:4px 7px;font-size:12px;line-height:1.25;letter-spacing:.06em;white-space:normal}
+  .product-image{aspect-ratio:.76}
+  .product-bag-action{margin-top:5px}
+  .product-bag-action .quick-add{height:34px;padding:0 3px;font-size:13px;white-space:nowrap}
+  .product-gallery-count{right:7px;bottom:7px;padding:3px 6px;font-size:12px}
+  .product-gallery-arrow{width:29px;height:34px;font-size:22px}
+  .card-quantity{height:34px;gap:8px}
+  .card-quantity button{width:24px;height:28px}
+  .card-quantity strong{font-size:14px}
+}
+@media(max-width:380px){
+  .site-header{grid-template-columns:30px minmax(0,1fr) 163px;column-gap:3px}
+  .wordmark{font-size:23px;letter-spacing:-1.6px}
+  .header-actions{gap:5px}
+  .login-trigger{max-width:60px;font-size:12px}
+}

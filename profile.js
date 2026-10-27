@@ -133,7 +133,9 @@
       signedInPhone = '';
       signedInName = '';
       pendingPhone = '';
+      pendingAddProductId = null;
       updateLoginButton();
+      clearBagForSignedOutUser();
       closeAuth();
       showToast('You have signed out.');
     }
