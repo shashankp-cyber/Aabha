@@ -126,3 +126,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .main-nav { border-color: var(--line); }
   .craft-band { background: #111319; }
 }
+
+/* Header account control and profile menu use the dark storefront surfaces. */
+.profile-trigger{border-color:var(--line);background:var(--surface);color:var(--ink)}
+.profile-trigger:hover,.profile-trigger[aria-expanded="true"]{background:var(--surface-raised);border-color:var(--wine);color:var(--saffron)}
+.profile-menu{background:var(--surface);border-color:var(--line);color:var(--ink);box-shadow:0 16px 38px #0009}
+.profile-menu-summary{color:var(--muted)}
+.profile-menu button:not(:disabled){color:var(--ink)!important}
+.profile-menu button:not(:disabled):hover,.profile-menu button:not(:disabled):focus{background:var(--surface-raised);color:var(--ink)!important}
+.profile-menu .profile-menu-logout:not(:disabled){color:var(--saffron)!important}
