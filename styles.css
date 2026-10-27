@@ -26,7 +26,7 @@
 #use-map-location{flex:0 0 auto;min-height:38px;padding:8px 14px;font-size:14px}
 #use-map-location:disabled{opacity:.5;cursor:not-allowed}
 @media(max-width:620px){.address-map-panel{padding:9px}.address-map-toolbar{align-items:flex-start;flex-direction:column;gap:4px}.delivery-map{height:300px;min-height:220px}.address-map-bottom{align-items:flex-start;flex-direction:column}.address-map-bottom #use-map-location{width:100%}.address-map-actions{align-items:flex-start;flex-direction:column}.address-map-open{width:100%}}
-.delivery-map{position:relative}.delivery-map-fallback{position:absolute;inset:0;z-index:1;display:grid;place-items:center;padding:22px;background:#eee8e1;color:#776c64;text-align:center;line-height:1.5}
+.delivery-map{position:relative;isolation:isolate}.delivery-map .leaflet-container{width:100%;height:100%;background:#e6e9e4;font-family:var(--sans);z-index:0}.delivery-map .leaflet-control-attribution{max-width:82%;font-size:10px;line-height:1.35}.delivery-map .leaflet-control-attribution a{color:#176c84}.delivery-map-fallback{position:absolute;inset:0;z-index:1;display:grid;place-items:center;padding:22px;background:var(--surface-raised,#eee8e1);color:var(--ink,#776c64);text-align:center;line-height:1.5}
 
 /* Bag drawer scrolls as one surface; cart items do not get a nested scrollbar. */
 .cart-drawer{overflow-y:auto;overscroll-behavior:contain}
