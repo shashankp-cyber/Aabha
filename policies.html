@@ -27,7 +27,7 @@
 
     <aside class="policy-notice" aria-label="Demo store notice">
       <strong>This is a local storefront demo.</strong>
-      <p>Sign-in uses a sample OTP, bag and address details stay in this browser, and checkout does not create an order or collect payment. The feedback form currently shows a confirmation only; it does not send or save your message.</p>
+      <p>Sign-in uses a sample OTP, bag and address details stay in this browser, and checkout does not create an order or collect payment. When an email recipient is configured, the feedback form opens your email app with your details prefilled. It does not send or save a message until you choose to send it.</p>
     </aside>
 
     <div class="policy-layout">
@@ -55,7 +55,7 @@
           <ul>
             <li><strong>Sign-in:</strong> the sample sign-in asks for a mobile number and name. It uses the displayed demo OTP <code>123456</code>; it does not send an SMS. The number and name are kept in this tab's session storage and removed when you sign out or the tab session ends.</li>
             <li><strong>Bag and delivery:</strong> bag contents, saved delivery addresses, and the selected address are stored in this browser's local storage so they remain after a page refresh. They stay on this device until cleared from the site or browser storage.</li>
-            <li><strong>Feedback:</strong> submitting the feedback form currently displays a thank-you message only. The message is not transmitted to Aabha or stored by this demo.</li>
+            <li><strong>Feedback:</strong> the form prepares an email containing your name, mobile number, and message. Your email app sends it to Aabha only if you choose to press Send. The website does not store the message.</li>
             <li><strong>Admin demo:</strong> product and collection edits are saved in this browser's local storage. The manager sign-in state uses tab session storage.</li>
           </ul>
           <p>Anyone with access to the same browser profile may be able to access locally stored information. Clear this site's browser storage to remove saved bag, address, product, and collection data.</p>
@@ -65,7 +65,7 @@
           <p class="eyebrow">03 — EXTERNAL SERVICES</p>
           <h2>Third-party services</h2>
           <p>If address autocomplete is configured with a Geoapify key, the address text you type is sent to Geoapify to return suggestions. Without a key, the page only provides its local HSR Layout demo suggestions. Google Fonts and external image hosts also provide some fonts and product imagery; your browser contacts those providers to load the assets.</p>
-          <p>Those providers process requests under their own terms and privacy notices. This demo has no payment processor or order-management service connected.</p>
+          <p>Those providers process requests under their own terms and privacy notices. If you send feedback, your email provider will process the message. This demo has no payment processor or order-management service connected.</p>
         </section>
 
         <section id="your-choices">
