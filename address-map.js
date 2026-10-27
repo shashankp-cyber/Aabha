@@ -15,6 +15,7 @@
   let selectedResult = null;
   let selectedPoint = null;
   let leafletPromise = null;
+  const reverseCache = new Map();
   let lookupSequence = 0;
   let lookupTimer = null;
   let lookupController = null;
@@ -188,14 +189,35 @@
     preview.textContent = 'Looking up this location…';
 
     const requestId = ++lookupSequence;
+    const cacheKey = `${lat.toFixed(5)},${lng.toFixed(5)}`;
+    const cachedResult = reverseCache.get(cacheKey);
+    if (cachedResult) {
+      selectedResult = cachedResult;
+      preview.textContent = cachedResult.formatted_address || 'Address found for this location.';
+      setStatus(cachedResult.properties.postcode ? 'Address and PIN code found. Review the filled address, then confirm.' : 'Address found. Enter the PIN code if it is unavailable for this location.');
+      useButton.disabled = false;
+      fillAddress(false);
+      return;
+    }
     window.clearTimeout(lookupTimer);
     lookupController?.abort();
     lookupTimer = window.setTimeout(async () => {
       lookupController = new AbortController();
       try {
         const params = new URLSearchParams({ lat: String(lat), lon: String(lng), lang: 'en' });
-        const response = await fetch(`${photonEndpoint}/reverse?${params}`, { signal: lookupController.signal });
-        if (!response.ok) throw new Error(`Address lookup failed (${response.status}).`);
+        const response = await fetch(`${photonEndpoint}/reverse?${params}`, {
+          signal: lookupController.signal,
+          cache: 'no-store',
+          headers: { Accept: 'application/json' }
+        });
+        if (!response.ok) {
+          let detail = '';
+          try {
+            const errorPayload = await response.json();
+            detail = errorPayload.error_message || errorPayload.message || errorPayload.error || '';
+          } catch {}
+          throw new Error(`Address lookup failed (${response.status})${detail ? `: ${detail}` : '.'}`);
+        }
         const payload = await response.json();
         if (requestId !== lookupSequence) return;
         const feature = (payload.features || []).find(item => item.properties?.countrycode?.toLowerCase() === 'in') || (payload.features || [])[0];
@@ -204,6 +226,8 @@
         const countryCode = normalized.properties.country_code?.toLowerCase();
         if (countryCode && countryCode !== 'in') throw new Error('Please choose a delivery location in India.');
         selectedResult = normalized;
+        reverseCache.set(cacheKey, normalized);
+        if (reverseCache.size > 25) reverseCache.delete(reverseCache.keys().next().value);
         preview.textContent = normalized.formatted_address || 'Address found for this location.';
         const hasPincode = Boolean(normalized.properties.postcode);
         setStatus(hasPincode ? 'Address and PIN code found. Review the filled address, then confirm.' : 'Address found. Enter the PIN code if it is unavailable for this location.');
@@ -215,7 +239,7 @@
         setStatus(error.message || 'Address lookup failed. Try again.', true);
         useButton.disabled = false;
       }
-    }, 450);
+    }, 900);
   }
 
   function component(result, type) {
